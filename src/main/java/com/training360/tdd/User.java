@@ -3,17 +3,17 @@ package com.training360.tdd;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "GREETINGS")
-public class Greeting {
+@Table(name = "USERS")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    public Greeting() {
+    public User() {
     }
 
-    public Greeting(String name) {
+    public User(String name) {
         this.name = name;
     }
 

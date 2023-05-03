@@ -10,20 +10,20 @@ import java.util.List;
 @RestController
 public class TddController {
     @Autowired
-    private GreetingService greetingService;
+    private UserService userService;
 
     @Autowired
-    private GreetingRepository greetingRepository;
+    private UserRepository userRepository;
 
     @GetMapping("/greeting")
     public String greet(@RequestParam(name = "name", defaultValue = "World") String name) {
-        greetingService.greet(name);
+        userService.greet(name);
         return "Hello, " + name + "!";
     }
 
 
     @GetMapping("/fetchGreetings")
-    public List<GreetingDTO> fetchGreetings() {
-        return greetingRepository.fetchAll();
+    public List<UserDTO> fetchGreetings() {
+        return userRepository.fetchAll();
     }
 }

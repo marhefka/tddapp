@@ -1,13 +1,12 @@
 package com.training360.tdd;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import static org.assertj.core.api.Assertions.*;
 
-public class GreetingSteps {
+public class UserSteps {
 
     private CucumberTestContext CONTEXT = CucumberTestContext.CONTEXT;
 

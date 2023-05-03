@@ -1,12 +1,12 @@
 package com.training360.tdd;
 
-public class GreetingDTO {
+public class UserDTO {
     private String name;
 
-    public GreetingDTO() {
+    public UserDTO() {
     }
 
-    public GreetingDTO(String name) {
+    public UserDTO(String name) {
         this.name = name;
     }
 

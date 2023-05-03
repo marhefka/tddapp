@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GreetingService {
+public class UserService {
     @Autowired
-    private GreetingRepository greetingRepository;
+    private UserRepository userRepository;
 
     public void greet(String who) {
-        greetingRepository.save(new Greeting(who));
+        userRepository.save(new User(who));
     }
 }
