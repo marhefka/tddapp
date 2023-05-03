@@ -3,7 +3,7 @@ package com.training360.tdd;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "GREETINGS")
 public class Greeting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
