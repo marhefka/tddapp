@@ -14,11 +14,13 @@ import org.springframework.test.context.TestPropertySource;
 public class GreetingApplicationRestAssuredAssertJTest {
     private final int PORT = 8081; // TODO should be configurable
 
-    private String baseUrl;
+    private String baseUrlGreeting;
+    private String baseUrlFetchGreetings;
 
     @BeforeAll
     public void setUp() {
-        baseUrl = "http://localhost:" + PORT + "/greeting";
+        baseUrlGreeting = "http://localhost:" + PORT + "/greeting";
+        baseUrlFetchGreetings = "http://localhost:" + PORT + "/fetchGreetings";
     }
 
     @Test
@@ -27,7 +29,7 @@ public class GreetingApplicationRestAssuredAssertJTest {
         String response = given()
                 .param("name", name)
                 .when()
-                .get(baseUrl)
+                .get(baseUrlGreeting)
                 .then()
                 .statusCode(200)
                 .extract()
@@ -39,11 +41,23 @@ public class GreetingApplicationRestAssuredAssertJTest {
     public void testGreetingWithoutName() {
         String response = given()
                 .when()
-                .get(baseUrl)
+                .get(baseUrlGreeting)
                 .then()
                 .statusCode(200)
                 .extract()
                 .asString();
         assertThat(response).isEqualTo("Hello, World!");
+    }
+
+    @Test
+    public void testFetchAll() {
+        String response = given()
+                .when()
+                .get(baseUrlFetchGreetings)
+                .then()
+                .statusCode(200)
+                .extract()
+                .asString();
+//        assertThat(response).isEqualTo("Hello, World!");
     }
 }
