@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-//@EnableJpaRepositories("com.training360.tdd.*")
-//@ComponentScan(basePackages = { "com.training360.tdd.*" })
-//@EntityScan("com.training360.tdd.*")
 public class TddApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TddApplication.class, args);
