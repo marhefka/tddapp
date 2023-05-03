@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class TddController {
+public class UserRestController {
     @Autowired
     private UserService userService;
 
@@ -20,7 +20,6 @@ public class TddController {
         userService.greet(name);
         return "Hello, " + name + "!";
     }
-
 
     @GetMapping("/fetchGreetings")
     public List<UserDTO> fetchGreetings() {

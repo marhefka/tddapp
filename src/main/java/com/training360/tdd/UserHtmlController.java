@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class UserController {
+public class UserHtmlController {
 
     private List<String> users = new ArrayList<>();
 
