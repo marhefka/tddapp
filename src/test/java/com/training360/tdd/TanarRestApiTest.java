@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TanarController.class)
-public class TanarControllerApiTest {
+public class TanarRestApiTest {
     @Autowired
     private MockMvc mockMvc;
 
