@@ -1,5 +1,8 @@
 Feature: Tanár létrehozása
 
+Az iskola igazgatóhelyetteseként tanárokat akarok létrehozni, hogy a későbbiekben
+az órarendhez tudjam őket rendelni.
+
 Scenario: Tanár létrehozása
   When Hozzáadok egy új tanárt "Marhefka István" teljes névvel, "1979.12.04" születési dátummal és "MI" azonosítóval
   Then A tanárok listájában 1 névnek kell szerepelnie
