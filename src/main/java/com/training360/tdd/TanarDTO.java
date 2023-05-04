@@ -5,9 +5,9 @@ import com.google.common.base.MoreObjects;
 import java.util.Objects;
 
 public class TanarDTO {
-    public String azonosito;
-    public String teljesNev;
-    public String szuletesiDatum;
+    private String azonosito;
+    private String teljesNev;
+    private String szuletesiDatum;
 
     public TanarDTO() {
     }
@@ -36,5 +36,29 @@ public class TanarDTO {
                 .add("teljesNev", teljesNev)
                 .add("szuletesiDatum", szuletesiDatum)
                 .toString();
+    }
+
+    public String getAzonosito() {
+        return azonosito;
+    }
+
+    public void setAzonosito(String azonosito) {
+        this.azonosito = azonosito;
+    }
+
+    public String getTeljesNev() {
+        return teljesNev;
+    }
+
+    public void setTeljesNev(String teljesNev) {
+        this.teljesNev = teljesNev;
+    }
+
+    public String getSzuletesiDatum() {
+        return szuletesiDatum;
+    }
+
+    public void setSzuletesiDatum(String szuletesiDatum) {
+        this.szuletesiDatum = szuletesiDatum;
     }
 }

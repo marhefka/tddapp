@@ -2,17 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>User Management</title>
+    <title>Tanár Management</title>
 </head>
 <body>
-<h1>User Management</h1>
+
+<h1>Tanár Management</h1>
+
 <ul>
-    <li th:each="user : ${users}" th:text="${user}"></li>
+    <li th:each="tanar : ${tanarok}" th:text="'azonosító: ' + ${tanar.azonosito} + ', teljes név: ' + ${tanar.teljesNev} + ', születési dátum: ' + ${tanar.szuletesiDatum}"></li>
 </ul>
-<form th:action="@{/addUser}" th:object="${newUser}" method="post">
-    <label for="name">Name:</label>
-    <input type="text" th:field="*{name}" id="name" />
-    <button type="submit">Add User</button>
+
+<form th:action="@{/letrehozTanart}" th:object="${ujTanar}" method="post">
+    <label for="azonosito">Azonosító:</label>
+    <input type="text" th:field="*{azonosito}" id="azonosito" />
+
+    <label for="teljesNev">Teljes név:</label>
+    <input type="text" th:field="*{teljesNev}" id="teljesNev" />
+
+    <label for="szuletesiDatum">Születési dátum:</label>
+    <input type="text" th:field="*{szuletesiDatum}" id="szuletesiDatum" />
+
+    <button type="submit">Létrehoz tanárt</button>
 </form>
 </body>
 </html>

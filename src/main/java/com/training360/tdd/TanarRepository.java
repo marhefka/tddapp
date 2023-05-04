@@ -37,9 +37,9 @@ public class TanarRepository {
         @Override
         public TanarDTO apply(Object[] objects) {
             TanarDTO dto = new TanarDTO();
-            dto.azonosito = (String) objects[0];
-            dto.teljesNev = (String) objects[1];
-            dto.szuletesiDatum = new SimpleDateFormat("yyyy.MM.dd").format((Date) objects[2]);
+            dto.setAzonosito((String) objects[0]);
+            dto.setTeljesNev((String) objects[1]);
+            dto.setSzuletesiDatum(new SimpleDateFormat("yyyy.MM.dd").format((Date) objects[2]));
             return dto;
         }
     }
