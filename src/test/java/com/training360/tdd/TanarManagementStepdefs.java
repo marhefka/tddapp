@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class TanarManagementStepdefs {
     @Autowired
-    private TanarService tanarService;
+    private TanarController tanarController;
 
     @Autowired
     private TestHelper testHelper;
@@ -34,7 +34,7 @@ public class TanarManagementStepdefs {
             command.teljesNev = teljesNev;
             command.szuletesiDatum = LocalDate.parse(sSzuletesiDatum, DateTimeFormatter.ofPattern("yyyy.MM.dd"));
 
-            tanarService.letrehozTanart(command);
+            tanarController.letrehozTanart(command);
             hiba = false;
         } catch (Exception ex) {
             hiba = true;
@@ -43,7 +43,7 @@ public class TanarManagementStepdefs {
 
     @Then("A tanárok listájában {int} névnek kell szerepelnie")
     public void aTanárokListájábanNévnekKellSzerepelnie(int count) {
-        assertThat(tanarService.listTanarok().size()).isEqualTo(count);
+        assertThat(tanarController.listTanarok().size()).isEqualTo(count);
     }
 
     @Then("Hibaüzenetet kapok")

@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class TanarManagementDriver {
     @Autowired
-    private TanarService tanarService;
+    private TanarController tanarController;
 
     public void letrehozTanart(String azonosito, String teljesNev, String sSzuletesiDatum) {
         LetrehozTanartCommand command = new LetrehozTanartCommand();
@@ -18,7 +18,7 @@ public class TanarManagementDriver {
         command.teljesNev = teljesNev;
         command.szuletesiDatum = parseHungarianDateFormat(sSzuletesiDatum);
 
-        tanarService.letrehozTanart(command);
+        tanarController.letrehozTanart(command);
     }
 
     public void modositTanarAdatait(String azonosito, String teljesNev, String sSzuletesiDatum) {
@@ -26,7 +26,7 @@ public class TanarManagementDriver {
         command.teljesNev = teljesNev;
         command.szuletesiDatum = parseHungarianDateFormat(sSzuletesiDatum);
 
-        tanarService.modositTanarAdatait(azonosito, command);
+        tanarController.modositTanarAdatait(azonosito, command);
     }
 
     public void letrehozTanartCsakAzonositoval(String azonosito) {
@@ -35,11 +35,11 @@ public class TanarManagementDriver {
         command.teljesNev = "teljesNev" + azonosito;
         command.szuletesiDatum = parseHungarianDateFormat("1980.01.01");
 
-        tanarService.letrehozTanart(command);
+        tanarController.letrehozTanart(command);
     }
 
     public List<TanarDTO> listTanarok() {
-        return tanarService.listTanarok();
+        return tanarController.listTanarok();
     }
 
     private LocalDate parseHungarianDateFormat(String sSzuletesiDatum) {

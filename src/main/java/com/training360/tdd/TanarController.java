@@ -9,19 +9,28 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Service
+@RestController
+@Validated
 @Transactional
-public class TanarService {
+public class TanarController {
+    @Autowired
+    private TanarService tanarService;
+
     @Autowired
     private TanarRepository tanarRepository;
 
+    @PostMapping("/tanar/letrehoz")
     public void letrehozTanart(@RequestBody @Valid LetrehozTanartCommand command) {
-        Tanar tanar = new Tanar(command.teljesNev, command.szuletesiDatum, command.azonosito);
-        tanarRepository.persist(tanar);
+        tanarService.letrehozTanart(command);
     }
 
+    @PostMapping("/tanar/{azonosito}/modosit")
     public void modositTanarAdatait(@PathVariable String azonosito, @RequestBody ModositTanarAdataitCommand command) {
-        Tanar tanar = tanarRepository.findByAzonosito(azonosito);
-        tanar.modositAdatokat(command.teljesNev, command.szuletesiDatum);
+        tanarService.modositTanarAdatait(azonosito, command);
+    }
+
+    @GetMapping("/tanar")
+    public List<TanarDTO> listTanarok() {
+        return tanarRepository.findAll();
     }
 }
