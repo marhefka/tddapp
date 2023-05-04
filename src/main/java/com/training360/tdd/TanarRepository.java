@@ -20,20 +20,12 @@ public class TanarRepository {
         entityManager.persist(tanar);
     }
 
-    public long count() {
-        return ((Number) entityManager.createQuery("SELECT COUNT(*) FROM Tanar t").getSingleResult()).longValue();
-    }
-
-    public void truncate() {
-        entityManager.createNativeQuery("TRUNCATE TABLE TANAR").executeUpdate();
-    }
-
     public List<TanarDTO> findAll() {
         List<Object[]> resultList = entityManager.createNativeQuery("SELECT t.AZONOSITO, t.TELJES_NEV, t.SZULETESI_DATUM FROM TANAR t ORDER BY t.azonosito").getResultList();
-        return resultList.stream().map(new ObjectArrayTanarDTOFunction()).toList();
+        return resultList.stream().map(new ObjectArray2TanarDTOFunction()).toList();
     }
 
-    private static class ObjectArrayTanarDTOFunction implements Function<Object[], TanarDTO> {
+    private static class ObjectArray2TanarDTOFunction implements Function<Object[], TanarDTO> {
         @Override
         public TanarDTO apply(Object[] objects) {
             TanarDTO dto = new TanarDTO();

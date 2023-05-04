@@ -1,14 +1,16 @@
 package com.training360.tdd;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TestHelper {
-    @Autowired
-    private TanarRepository tanarRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public void truncateTables() {
-        tanarRepository.truncate();
+        entityManager.createNativeQuery("TRUNCATE TABLE TANAR").executeUpdate();
     }
 }
