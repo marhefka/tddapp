@@ -21,6 +21,14 @@ public class TanarManagementDriver {
         tanarService.letrehozTanart(command);
     }
 
+    public void modositTanarAdatait(String azonosito, String teljesNev, String sSzuletesiDatum) {
+        ModositTanarAdataitCommand command = new ModositTanarAdataitCommand();
+        command.teljesNev = teljesNev;
+        command.szuletesiDatum = parseHungarianDateFormat(sSzuletesiDatum);
+
+        tanarService.modositTanarAdatait(azonosito, command);
+    }
+
     public void letrehozTanartCsakAzonositoval(String azonosito) {
         LetrehozTanartCommand command = new LetrehozTanartCommand();
         command.azonosito = azonosito;

@@ -25,6 +25,10 @@ public class TanarRepository {
         return resultList.stream().map(new ObjectArray2TanarDTOFunction()).toList();
     }
 
+    public Tanar findByAzonosito(String azonosito) {
+        return entityManager.find(Tanar.class, azonosito);
+    }
+
     private static class ObjectArray2TanarDTOFunction implements Function<Object[], TanarDTO> {
         @Override
         public TanarDTO apply(Object[] objects) {

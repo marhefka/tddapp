@@ -6,9 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-public class LetrehozTanartCommand {
-    @NotEmpty
-    public String azonosito;
+public class ModositTanarAdataitCommand {
     @NotEmpty
     public String teljesNev;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

@@ -3,7 +3,6 @@ package com.training360.tdd;
 import jakarta.validation.ConstraintViolationException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -50,5 +49,14 @@ public class TanarManagementTest extends IntegrationTestBase {
     @Test(expected = ConstraintViolationException.class) // ez tipikusan nem BDD teszt
     public void letrehozTanartWithEmptyParamsShouldThrowException() throws Exception {
         tanarManagementDriver.letrehozTanart(null, null, null);
+    }
+
+    @Test
+    public void modositAdatokat() throws Exception {
+        tanarManagementDriver.letrehozTanartCsakAzonositoval("mi");
+        tanarManagementDriver.modositTanarAdatait("mi", "Meredek Ibolya", "1956.07.12");
+
+        List<TanarDTO> tanarList = tanarManagementDriver.listTanarok();
+        assertThat(tanarList).containsExactly(new TanarDTO("mi", "Meredek Ibolya", "1956.07.12"));
     }
 }

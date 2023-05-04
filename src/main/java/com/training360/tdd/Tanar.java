@@ -28,4 +28,9 @@ public class Tanar {
         this.szuletesiDatum = szuletesiDatum;
         this.azonosito = azonosito;
     }
+
+    public void modositAdatokat(String teljesNev, LocalDate szuletesiDatum) {
+        this.teljesNev = teljesNev;
+        this.szuletesiDatum = szuletesiDatum;
+    }
 }
