@@ -14,7 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureMockMvc
 public class TanarManagementTest extends IntegrationTestBase {
     @Test
     public void letrehozTanart() throws Exception {
