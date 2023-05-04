@@ -23,6 +23,15 @@ public class TanarManagementTest extends IntegrationTestBase {
         assertThat(tanarList).containsExactly(new TanarDTO("mi", "Marhefka Istvan", "1979.12.04"));
     }
 
+    @Test
+    public void letrehozKetTanart() throws Exception {
+        tanarManagementDriver.letrehozTanartCsakAzonositoval("X");
+        tanarManagementDriver.letrehozTanartCsakAzonositoval("Y");
+
+        List<TanarDTO> tanarList = tanarManagementDriver.listTanarok();
+        assertThat(tanarList).hasSize(2);
+    }
+
     @Test(expected = DataIntegrityViolationException.class)
     public void letrehozTanarokatWithTheSameAzonositoShouldThrowException() throws Exception {
         tanarManagementDriver.letrehozTanartCsakAzonositoval("mi");
