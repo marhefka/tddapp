@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.ParseException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,30 +17,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TanarManagementTest {
-    @Autowired
-    private TanarService tanarService;
-
-    @Autowired
-    private TanarRepository tanarRepository;
-
-    @Autowired
-    private TanarManagementDriver tanarManagementDriver;
-
-    @Before
-    public void dropDb() {
-        tanarRepository.truncate();
-    }
-
+public class TanarManagementTest extends IntegrationTestBase {
     @Test
-    public void letrehozTanart() throws ParseException {
+    public void letrehozTanart() throws Exception {
         tanarManagementDriver.letrehozTanart("mi", "Marhefka Istvan", "1979.12.04");
+
         List<TanarDTO> tanarList = tanarManagementDriver.listTanarok();
         assertThat(tanarList).containsExactly(new TanarDTO("mi", "Marhefka Istvan", "1979.12.04"));
     }
 
     @Test(expected = ConstraintViolationException.class)
-    public void letrehozTanartWithEmptyParamsShouldThrowException() throws ParseException {
+    public void letrehozTanartWithEmptyParamsShouldThrowException() throws Exception {
         tanarManagementDriver.letrehozTanart(null, null, null);
     }
 
@@ -50,14 +36,13 @@ public class TanarManagementTest {
         tanarManagementDriver.letrehozTanartCsakAzonositoval("mi");
         tanarManagementDriver.letrehozTanartCsakAzonositoval("mi");
 
-        assertThat(tanarRepository.count()).isEqualTo(1);
+        List<TanarDTO> tanarList = tanarManagementDriver.listTanarok();
+        assertThat(tanarList).hasSize(1);
     }
 
     @Test(expected = DataIntegrityViolationException.class)
     public void letrehozTanartWithTheSameTeljesNevAndSzuletesiDatumShouldThrowException() throws Exception {
         tanarManagementDriver.letrehozTanart("mi", "Marhefka Istvan", "1979.12.04");
         tanarManagementDriver.letrehozTanart("mi2", "Marhefka Istvan", "1979.12.04");
-
-        assertThat(tanarRepository.count()).isEqualTo(1);
     }
 }
