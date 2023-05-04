@@ -28,7 +28,7 @@ public class TanarController {
     }
 
     @PostMapping("/tanar/{azonosito}/modosit")
-    public Response modositTanarAdatait(@PathVariable String azonosito, @RequestBody ModositTanarAdataitCommand command) {
+    public Response modositTanarAdatait(@PathVariable String azonosito, @RequestBody @Valid ModositTanarAdataitCommand command) {
         try {
             tanarService.modositTanarAdatait(azonosito, command);
             return new Response();
