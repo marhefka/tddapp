@@ -1,5 +1,6 @@
 package com.training360.tdd;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,7 +12,15 @@ public class TanarManagementStepdefs {
     @Autowired
     private TanarManagementDriver tanarManagementDriver;
 
+    @Autowired
+    private TestHelper testHelper;
+
     private boolean hiba;
+
+    @Before
+    public void before() {
+        testHelper.truncateTables();
+    }
 
     @Given("Egy tanár a rendszerben {string} teljes névvel, {string} születési dátummal és {string} azonosítóval")
     @When("Hozzáadok egy új tanárt {string} teljes névvel, {string} születési dátummal és {string} azonosítóval")

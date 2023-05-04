@@ -23,11 +23,6 @@ public class TanarManagementTest extends IntegrationTestBase {
         assertThat(tanarList).containsExactly(new TanarDTO("mi", "Marhefka Istvan", "1979.12.04"));
     }
 
-    @Test(expected = ConstraintViolationException.class)
-    public void letrehozTanartWithEmptyParamsShouldThrowException() throws Exception {
-        tanarManagementDriver.letrehozTanart(null, null, null);
-    }
-
     @Test(expected = DataIntegrityViolationException.class)
     public void letrehozTanarokatWithTheSameAzonositoShouldThrowException() throws Exception {
         tanarManagementDriver.letrehozTanartCsakAzonositoval("mi");
@@ -41,5 +36,10 @@ public class TanarManagementTest extends IntegrationTestBase {
     public void letrehozTanartWithTheSameTeljesNevAndSzuletesiDatumShouldThrowException() throws Exception {
         tanarManagementDriver.letrehozTanart("mi", "Marhefka Istvan", "1979.12.04");
         tanarManagementDriver.letrehozTanart("mi2", "Marhefka Istvan", "1979.12.04");
+    }
+
+    @Test(expected = ConstraintViolationException.class) // ez tipikusan nem BDD teszt
+    public void letrehozTanartWithEmptyParamsShouldThrowException() throws Exception {
+        tanarManagementDriver.letrehozTanart(null, null, null);
     }
 }
