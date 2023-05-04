@@ -6,11 +6,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TanarManagementStepdefs {
     @Autowired
-    private TanarManagementDriver tanarManagementDriver;
+    private TanarService tanarService;
 
     @Autowired
     private TestHelper testHelper;
@@ -26,7 +29,12 @@ public class TanarManagementStepdefs {
     @When("Hozzáadok egy új tanárt {string} teljes névvel, {string} születési dátummal és {string} azonosítóval")
     public void hozzáadokEgyÚjTanártTeljesNévvelSzületésiDátummalÉsAzonosítóval(String teljesNev, String sSzuletesiDatum, String azonosito) throws Exception {
         try {
-            tanarManagementDriver.letrehozTanart(azonosito, teljesNev, sSzuletesiDatum);
+            LetrehozTanartCommand command = new LetrehozTanartCommand();
+            command.azonosito = azonosito;
+            command.teljesNev = teljesNev;
+            command.szuletesiDatum = LocalDate.parse(sSzuletesiDatum, DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+
+            tanarService.letrehozTanart(command);
             hiba = false;
         } catch (Exception ex) {
             hiba = true;
@@ -35,7 +43,7 @@ public class TanarManagementStepdefs {
 
     @Then("A tanárok listájában {int} névnek kell szerepelnie")
     public void aTanárokListájábanNévnekKellSzerepelnie(int count) {
-        assertThat(tanarManagementDriver.listTanarok().size()).isEqualTo(count);
+        assertThat(tanarService.listTanarok().size()).isEqualTo(count);
     }
 
     @Then("Hibaüzenetet kapok")
