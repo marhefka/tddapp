@@ -12,22 +12,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class TanarManagementStepdefs {
     @Autowired
-    private TanarService tanarService;
+    private TanarManagementDriver tanarManagementDriver;
 
     private boolean hiba;
 
     @Given("Egy tanár a rendszerben {string} teljes névvel, {string} születési dátummal és {string} azonosítóval")
     @When("Hozzáadok egy új tanárt {string} teljes névvel, {string} születési dátummal és {string} azonosítóval")
     public void hozzáadokEgyÚjTanártTeljesNévvelSzületésiDátummalÉsAzonosítóval(String teljesNev, String sSzuletesiDatum, String azonosito) throws Exception {
-        Date szuletesiDatum = new SimpleDateFormat("yyyy.MM.dd").parse(sSzuletesiDatum);
-
-        LetrehozTanartCommand command = new LetrehozTanartCommand();
-        command.teljesNev = teljesNev;
-        command.szuletesiDatum = szuletesiDatum;
-        command.azonosito = azonosito;
-
         try {
-            tanarService.letrehozTanart(command);
+            tanarManagementDriver.letrehozTanart(azonosito, teljesNev, sSzuletesiDatum);
             hiba = false;
         } catch (Exception ex) {
             hiba = true;
@@ -36,7 +29,7 @@ public class TanarManagementStepdefs {
 
     @Then("A tanárok listájában {int} névnek kell szerepelnie")
     public void aTanárokListájábanNévnekKellSzerepelnie(int count) {
-        assertThat(tanarService.listTanarok().size()).isEqualTo(count);
+        assertThat(tanarManagementDriver.listTanarok().size()).isEqualTo(count);
     }
 
     @Then("Hibaüzenetet kapok")
