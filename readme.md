@@ -1,3 +1,23 @@
+
+Kódbemutató
+
+- Domain bemutatása
+  - Nem kifejezetten DDD, de annak tudatosságával
+- Architektúra bemutatása (Spring Boot, H2, Liquibase, Rest API, Service (Controller) / Repository) - kódot megmutatva
+- Walking Skeleton koncepció
+  - deployment pipeline
+- Cucumber / BDD test bemutatása (service-be itt még nem megyek bele)
+- ControREST API Design
+
+- ATDD java teszt bemutatása (majd itt megyek végig a stacken)
+  - migrációs szkriptet megmutatni
+  - db táblát törölni
+  - portra felhívni a figyelmet
+  - Mit lehetne unit tesztelni?
+- Live coding
+
+----
+
 API design
 
 - letrehozTanart
