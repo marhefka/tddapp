@@ -33,7 +33,7 @@ public class TanarManagementTest {
     @Test
     public void letrehozTanart() throws ParseException {
         LetrehozTanartCommand command = new LetrehozTanartCommand();
-        command.rovidAzonosito = "mi";
+        command.azonosito = "mi";
         command.teljesNev = "Marhefka Istvan";
         command.szuletesiDatum = new SimpleDateFormat("yyyy-MM-dd").parse("1979-12-04");
         tanarService.letrehozTanart(command);
@@ -44,7 +44,7 @@ public class TanarManagementTest {
     @Test(expected = ConstraintViolationException.class)
     public void letrehozTanartWithEmptyParamsShouldThrowException() throws ParseException {
         LetrehozTanartCommand command = new LetrehozTanartCommand();
-        command.rovidAzonosito = null;
+        command.azonosito = null;
         command.teljesNev = null;
         command.szuletesiDatum = null;
         tanarService.letrehozTanart(command);
@@ -53,13 +53,13 @@ public class TanarManagementTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void letrehozTanartWithTheRovidNevShouldThrowException() throws Exception {
         LetrehozTanartCommand command = new LetrehozTanartCommand();
-        command.rovidAzonosito = "mi";
+        command.azonosito = "mi";
         command.teljesNev = "Marhefka Istvan";
         command.szuletesiDatum = new SimpleDateFormat("yyyy-MM-dd").parse("1979-12-04");
         tanarService.letrehozTanart(command);
 
         LetrehozTanartCommand command2 = new LetrehozTanartCommand();
-        command2.rovidAzonosito = "mi";
+        command2.azonosito = "mi";
         command2.teljesNev = "Marhefka Istvan2";
         command2.szuletesiDatum = new SimpleDateFormat("yyyy-MM-dd").parse("1979-12-04");
         tanarService.letrehozTanart(command2);
@@ -70,13 +70,13 @@ public class TanarManagementTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void letrehozTanartWithTheSameTeljesNevAndSzuletesiDatumShouldThrowException() throws Exception {
         LetrehozTanartCommand command = new LetrehozTanartCommand();
-        command.rovidAzonosito = "mi";
+        command.azonosito = "mi";
         command.teljesNev = "Marhefka Istvan";
         command.szuletesiDatum = new SimpleDateFormat("yyyy-MM-dd").parse("1979-12-04");
         tanarService.letrehozTanart(command);
 
         LetrehozTanartCommand command2 = new LetrehozTanartCommand();
-        command2.rovidAzonosito = "mi2";
+        command2.azonosito = "mi2";
         command2.teljesNev = "Marhefka Istvan";
         command2.szuletesiDatum = new SimpleDateFormat("yyyy-MM-dd").parse("1979-12-04");
         tanarService.letrehozTanart(command2);

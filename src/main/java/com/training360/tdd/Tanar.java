@@ -8,8 +8,8 @@ import java.util.Date;
 @Table(name = "TANAR")
 public class Tanar {
     @Id
-    @Column(name = "ROVID_NEV")
-    private String rovidNev;
+    @Column(name = "AZONOSITO")
+    private String azonosito;
 
     @Column(name = "TELJES_NEV")
     private String teljesNev;
@@ -20,9 +20,9 @@ public class Tanar {
     protected Tanar() {
     }
 
-    public Tanar(String teljesNev, Date szuletesiDatum, String rovidNev) {
+    public Tanar(String teljesNev, Date szuletesiDatum, String azonosito) {
         this.teljesNev = teljesNev;
         this.szuletesiDatum = szuletesiDatum;
-        this.rovidNev = rovidNev;
+        this.azonosito = azonosito;
     }
 }

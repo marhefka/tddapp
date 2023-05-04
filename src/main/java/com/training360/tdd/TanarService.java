@@ -8,6 +8,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @Service
 @RestController
 @Validated
@@ -17,7 +19,11 @@ public class TanarService {
     private TanarRepository tanarRepository;
 
     public void letrehozTanart(@RequestBody @Valid LetrehozTanartCommand command) {
-        Tanar tanar = new Tanar(command.teljesNev, command.szuletesiDatum, command.rovidAzonosito);
+        Tanar tanar = new Tanar(command.teljesNev, command.szuletesiDatum, command.azonosito);
         tanarRepository.persist(tanar);
+    }
+
+    public List<TanarDTO> listTanarok() {
+        return tanarRepository.findAll();
     }
 }

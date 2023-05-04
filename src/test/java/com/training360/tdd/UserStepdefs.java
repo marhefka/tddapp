@@ -6,8 +6,7 @@ import io.restassured.RestAssured;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import static org.assertj.core.api.Assertions.*;
 
-public class UserSteps {
-
+public class UserStepdefs {
     private CucumberTestContext CONTEXT = CucumberTestContext.CONTEXT;
 
     @LocalServerPort

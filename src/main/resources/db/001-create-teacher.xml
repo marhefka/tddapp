@@ -7,11 +7,11 @@
     <changeSet id="001-create-teacher" author="mi">
         <sql>
             CREATE TABLE TANAR (
+                AZONOSITO VARCHAR(20) NOT NULL,
                 TELJES_NEV VARCHAR(50) NOT NULL,
                 SZULETESI_DATUM DATE NOT NULL,
-                ROVID_NEV VARCHAR(20) NOT NULL,
 
-                PRIMARY KEY (ROVID_NEV),
+                PRIMARY KEY (AZONOSITO),
                 UNIQUE (TELJES_NEV, SZULETESI_DATUM)
             );
         </sql>

@@ -13,5 +13,5 @@ public class LetrehozTanartCommand {
     @NotNull
     public Date szuletesiDatum;
     @NotEmpty
-    public String rovidAzonosito;
+    public String azonosito;
 }
