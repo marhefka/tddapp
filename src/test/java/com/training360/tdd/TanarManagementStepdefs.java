@@ -1,5 +1,6 @@
 package com.training360.tdd;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,9 @@ public class TanarManagementStepdefs {
 
     private boolean hiba;
 
+    @Given("Egy tanár a rendszerben {string} teljes névvel, {string} születési dátummal és {string} azonosítóval")
     @When("Hozzáadok egy új tanárt {string} teljes névvel, {string} születési dátummal és {string} azonosítóval")
-    public void hozzáadokEgyÚjTanártTeljesNévvelSzületésiDátummalÉsRövidNévvel(String teljesNev, String sSzuletesiDatum, String azonosito) throws Exception {
+    public void hozzáadokEgyÚjTanártTeljesNévvelSzületésiDátummalÉsAzonosítóval(String teljesNev, String sSzuletesiDatum, String azonosito) throws Exception {
         Date szuletesiDatum = new SimpleDateFormat("yyyy.MM.dd").parse(sSzuletesiDatum);
 
         LetrehozTanartCommand command = new LetrehozTanartCommand();
