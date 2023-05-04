@@ -3,7 +3,7 @@ package com.training360.tdd;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @Validated
-@Transactional
 public class TanarController {
     @Autowired
     private TanarService tanarService;
@@ -20,17 +19,28 @@ public class TanarController {
     private TanarRepository tanarRepository;
 
     @PostMapping("/tanar/letrehoz")
-    public void letrehozTanart(@RequestBody @Valid LetrehozTanartCommand command) {
-        tanarService.letrehozTanart(command);
+    public Response letrehozTanart(@RequestBody @Valid LetrehozTanartCommand command) {
+        try {
+            tanarService.letrehozTanart(command);
+            return new Response();
+        } catch (DataIntegrityViolationException ex) {
+            return new Response("ERROR_DUPLICATION");
+        }
     }
 
     @PostMapping("/tanar/{azonosito}/modosit")
-    public void modositTanarAdatait(@PathVariable String azonosito, @RequestBody ModositTanarAdataitCommand command) {
-        tanarService.modositTanarAdatait(azonosito, command);
+    public Response modositTanarAdatait(@PathVariable String azonosito, @RequestBody ModositTanarAdataitCommand command) {
+        try {
+            tanarService.modositTanarAdatait(azonosito, command);
+            return new Response();
+        } catch (Exception ex) {
+            return new Response("ERROR_AZONOSITO_NOT_FOUND");
+        }
     }
 
     @GetMapping("/tanar")
-    public List<TanarDTO> listTanarok() {
-        return tanarRepository.findAll();
+    public Response<List<TanarDTO>> listTanarok() {
+        List<TanarDTO> tanarDTOS = tanarRepository.findAll();
+        return new Response(Response.RESPONSE_CODE_OK, tanarDTOS);
     }
 }

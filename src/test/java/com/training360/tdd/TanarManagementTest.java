@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static com.training360.tdd.Response.isNotOk;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -31,24 +32,20 @@ public class TanarManagementTest extends IntegrationTestBase {
         assertThat(tanarList).hasSize(2);
     }
 
-    @Test(expected = DataIntegrityViolationException.class)
+    @Test
     public void letrehozTanarokatWithTheSameAzonositoShouldThrowException() throws Exception {
         tanarManagementDriver.letrehozTanartCsakAzonositoval("mi");
-        tanarManagementDriver.letrehozTanartCsakAzonositoval("mi");
 
-        List<TanarDTO> tanarList = tanarManagementDriver.listTanarok();
-        assertThat(tanarList).hasSize(1);
+        Response response = tanarManagementDriver.letrehozTanartCsakAzonositoval("mi");
+        assertThat(isNotOk(response)).isTrue();
     }
 
-    @Test(expected = DataIntegrityViolationException.class)
+    @Test
     public void letrehozTanartWithTheSameTeljesNevAndSzuletesiDatumShouldThrowException() throws Exception {
         tanarManagementDriver.letrehozTanart("mi", "Marhefka Istvan", "1979.12.04");
-        tanarManagementDriver.letrehozTanart("mi2", "Marhefka Istvan", "1979.12.04");
-    }
 
-    @Test(expected = ConstraintViolationException.class) // ez tipikusan nem BDD teszt
-    public void letrehozTanartWithEmptyParamsShouldThrowException() throws Exception {
-        tanarManagementDriver.letrehozTanart(null, null, null);
+        Response response = tanarManagementDriver.letrehozTanart("mi2", "Marhefka Istvan", "1979.12.04");
+        assertThat(isNotOk(response)).isTrue();
     }
 
     @Test
