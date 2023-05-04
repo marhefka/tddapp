@@ -26,7 +26,7 @@ public class TanarManagementStepdefs {
     }
 
     @Given("Egy tanár a rendszerben {string} teljes névvel, {string} születési dátummal és {string} azonosítóval")
-    @When("Hozzáadok egy új tanárt {string} teljes névvel, {string} születési dátummal és {string} azonosítóval")
+    @When("Létrehozok egy új tanárt {string} teljes névvel, {string} születési dátummal és {string} azonosítóval")
     public void hozzáadokEgyÚjTanártTeljesNévvelSzületésiDátummalÉsAzonosítóval(String teljesNev, String sSzuletesiDatum, String azonosito) throws Exception {
         try {
             LetrehozTanartCommand command = new LetrehozTanartCommand();
