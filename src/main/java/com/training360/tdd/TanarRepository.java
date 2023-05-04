@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
@@ -40,7 +41,7 @@ public class TanarRepository {
             TanarDTO dto = new TanarDTO();
             dto.azonosito = (String) objects[0];
             dto.teljesNev = (String) objects[1];
-            dto.szuletesiDatum = (Date) objects[2];
+            dto.szuletesiDatum = new SimpleDateFormat("yyyy.MM.dd").format((Date) objects[2]);
             return dto;
         }
     }

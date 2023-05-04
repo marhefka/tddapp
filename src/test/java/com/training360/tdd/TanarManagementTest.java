@@ -11,7 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,6 +25,9 @@ public class TanarManagementTest {
     @Autowired
     private TanarRepository tanarRepository;
 
+    @Autowired
+    private TanarManagementDriver tanarManagementDriver;
+
     @Before
     public void dropDb() {
         tanarRepository.truncate();
@@ -32,54 +35,28 @@ public class TanarManagementTest {
 
     @Test
     public void letrehozTanart() throws ParseException {
-        LetrehozTanartCommand command = new LetrehozTanartCommand();
-        command.azonosito = "mi";
-        command.teljesNev = "Marhefka Istvan";
-        command.szuletesiDatum = new SimpleDateFormat("yyyy-MM-dd").parse("1979-12-04");
-        tanarService.letrehozTanart(command);
-
-        assertThat(tanarRepository.count()).isEqualTo(1);
+        tanarManagementDriver.letrehozTanart("mi", "Marhefka Istvan", "1979.12.04");
+        List<TanarDTO> tanarList = tanarManagementDriver.listTanarok();
+        assertThat(tanarList).containsExactly(new TanarDTO("mi", "Marhefka Istvan", "1979.12.04"));
     }
 
     @Test(expected = ConstraintViolationException.class)
     public void letrehozTanartWithEmptyParamsShouldThrowException() throws ParseException {
-        LetrehozTanartCommand command = new LetrehozTanartCommand();
-        command.azonosito = null;
-        command.teljesNev = null;
-        command.szuletesiDatum = null;
-        tanarService.letrehozTanart(command);
+        tanarManagementDriver.letrehozTanart(null, null, null);
     }
 
     @Test(expected = DataIntegrityViolationException.class)
-    public void letrehozTanartWithTheRovidNevShouldThrowException() throws Exception {
-        LetrehozTanartCommand command = new LetrehozTanartCommand();
-        command.azonosito = "mi";
-        command.teljesNev = "Marhefka Istvan";
-        command.szuletesiDatum = new SimpleDateFormat("yyyy-MM-dd").parse("1979-12-04");
-        tanarService.letrehozTanart(command);
-
-        LetrehozTanartCommand command2 = new LetrehozTanartCommand();
-        command2.azonosito = "mi";
-        command2.teljesNev = "Marhefka Istvan2";
-        command2.szuletesiDatum = new SimpleDateFormat("yyyy-MM-dd").parse("1979-12-04");
-        tanarService.letrehozTanart(command2);
+    public void letrehozTanarokatWithTheSameAzonositoShouldThrowException() throws Exception {
+        tanarManagementDriver.letrehozTanartCsakAzonositoval("mi");
+        tanarManagementDriver.letrehozTanartCsakAzonositoval("mi");
 
         assertThat(tanarRepository.count()).isEqualTo(1);
     }
 
     @Test(expected = DataIntegrityViolationException.class)
     public void letrehozTanartWithTheSameTeljesNevAndSzuletesiDatumShouldThrowException() throws Exception {
-        LetrehozTanartCommand command = new LetrehozTanartCommand();
-        command.azonosito = "mi";
-        command.teljesNev = "Marhefka Istvan";
-        command.szuletesiDatum = new SimpleDateFormat("yyyy-MM-dd").parse("1979-12-04");
-        tanarService.letrehozTanart(command);
-
-        LetrehozTanartCommand command2 = new LetrehozTanartCommand();
-        command2.azonosito = "mi2";
-        command2.teljesNev = "Marhefka Istvan";
-        command2.szuletesiDatum = new SimpleDateFormat("yyyy-MM-dd").parse("1979-12-04");
-        tanarService.letrehozTanart(command2);
+        tanarManagementDriver.letrehozTanart("mi", "Marhefka Istvan", "1979.12.04");
+        tanarManagementDriver.letrehozTanart("mi2", "Marhefka Istvan", "1979.12.04");
 
         assertThat(tanarRepository.count()).isEqualTo(1);
     }
