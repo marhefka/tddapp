@@ -1,12 +1,13 @@
 package com.training360.tdd;
 
-import static io.restassured.RestAssured.given;
-import static java.lang.ThreadLocal.withInitial;
-
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import static io.restassured.RestAssured.given;
+import static java.lang.ThreadLocal.withInitial;
 
 /**
  * Singleton to manage objects and share their state between step definitions.

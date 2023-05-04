@@ -5,9 +5,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TanarManagementStepdefs {

@@ -1,8 +1,11 @@
 package com.training360.tdd;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "TANAR")
@@ -15,12 +18,12 @@ public class Tanar {
     private String teljesNev;
 
     @Column(name = "SZULETESI_DATUM")
-    private Date szuletesiDatum;
+    private LocalDate szuletesiDatum;
 
     protected Tanar() {
     }
 
-    public Tanar(String teljesNev, Date szuletesiDatum, String azonosito) {
+    public Tanar(String teljesNev, LocalDate szuletesiDatum, String azonosito) {
         this.teljesNev = teljesNev;
         this.szuletesiDatum = szuletesiDatum;
         this.azonosito = azonosito;

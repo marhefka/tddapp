@@ -3,9 +3,8 @@ package com.training360.tdd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Component
@@ -35,15 +34,11 @@ public class TanarManagementDriver {
         return tanarService.listTanarok();
     }
 
-    private Date parseHungarianDateFormat(String sSzuletesiDatum) {
-        try {
-            if (sSzuletesiDatum == null) {
-                return null;
-            }
-
-            return new SimpleDateFormat("yyyy.MM.dd").parse(sSzuletesiDatum);
-        } catch (ParseException ex) {
-            throw new RuntimeException(ex);
+    private LocalDate parseHungarianDateFormat(String sSzuletesiDatum) {
+        if (sSzuletesiDatum == null) {
+            return null;
         }
+
+        return LocalDate.parse(sSzuletesiDatum, DateTimeFormatter.ofPattern("yyyy.MM.dd"));
     }
 }
