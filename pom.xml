@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.0.6</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <groupId>com.training360</groupId>
@@ -18,6 +18,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
+
+        <spring-jdbc.version>6.0.8</spring-jdbc.version>
+        <spring-tx.version>6.0.8</spring-tx.version>
         <liquibase-core.version>4.21.1</liquibase-core.version>
         <cucumber-java.version>7.12.0</cucumber-java.version>
         <cucumber-junit.version>7.12.0</cucumber-junit.version>
@@ -45,6 +48,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
         </dependency>
 
         <dependency>
