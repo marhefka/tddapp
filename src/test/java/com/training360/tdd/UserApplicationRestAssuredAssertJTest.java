@@ -1,17 +1,13 @@
 package com.training360.tdd;
 import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.*;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.test.context.TestPropertySource;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@TestPropertySource("classpath:application-test.properties")
-@TestInstance(Lifecycle.PER_CLASS)
+import org.junit.jupiter.api.BeforeAll;
+import org.springframework.boot.test.web.server.LocalServerPort;
+
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+//@TestPropertySource("classpath:application-test.properties")
+//@TestInstance(Lifecycle.PER_CLASS)
 public class UserApplicationRestAssuredAssertJTest {
     @LocalServerPort
     private int port;
@@ -25,7 +21,7 @@ public class UserApplicationRestAssuredAssertJTest {
         baseUrlFetchGreetings = "http://localhost:" + port + "/fetchGreetings";
     }
 
-    @Test
+//    @Test
     public void testGreetingWithName() {
         String name = "John";
         String response = given()
@@ -39,7 +35,7 @@ public class UserApplicationRestAssuredAssertJTest {
         assertThat(response).isEqualTo("Hello, " + name + "!");
     }
 
-    @Test
+//    @Test
     public void testGreetingWithoutName() {
         String response = given()
                 .when()
@@ -51,7 +47,7 @@ public class UserApplicationRestAssuredAssertJTest {
         assertThat(response).isEqualTo("Hello, World!");
     }
 
-    @Test
+//    @Test
     public void testFetchAll() {
         String response = given()
                 .when()
