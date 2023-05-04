@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="001-create-teacher" author="mi">
+        <sql>
+            CREATE TABLE TANAR (
+                TELJES_NEV VARCHAR(50) NOT NULL,
+                SZULETESI_DATUM DATE NOT NULL,
+                ROVID_NEV VARCHAR(20) NOT NULL,
+
+                PRIMARY KEY (ROVID_NEV),
+                UNIQUE (TELJES_NEV, SZULETESI_DATUM)
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
