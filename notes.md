@@ -18,18 +18,7 @@ Kódbemutató
 
 ----
 
-API design
-
-- letrehozTanart
-  - teljes név
-  - születési dátum (kettő együtt egyedi)
-  - egyedi rövid azonosító 
-  - CHECK egyediség
-- letrehozTargyat
-  - név
-  - CHECK egyediség
-
-------------------------------------
+Tovabbi szolgaltasok:
 
 - megkezdUjEvet
   - év
